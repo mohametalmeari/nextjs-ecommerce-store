@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Button from "@/components/ui/button";
 import IconButton from "@/components/ui/icon-button";
@@ -7,6 +7,7 @@ import { Dialog } from "@headlessui/react";
 import { Plus, X } from "lucide-react";
 import { useState } from "react";
 import Filter from "./filter";
+import PriceFilter from "./priceFilter";
 
 interface MobileFilterProps {
   sizes: Size[];
@@ -40,6 +41,8 @@ const MobileFilter: React.FC<MobileFilterProps> = ({ sizes, colors }) => {
               <div className="p-4">
                 <Filter valueKey="sizeId" name="Sizes" data={sizes} />
                 <Filter valueKey="colorId" name="Colors" data={colors} />
+                <PriceFilter valueKey="maxPrice" name="Max Price" />
+                <PriceFilter valueKey="minPrice" name="Min Price" />
               </div>
             </Dialog.Panel>
           </div>
