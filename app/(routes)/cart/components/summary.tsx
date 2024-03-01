@@ -12,14 +12,19 @@ const Summary = () => {
   const removeAll = useCart((state) => state.removeAll);
 
   const totalPrice = items.reduce(
-    (total, item) => total + Number(item.price),
+    (total, item) => total + Number(item.product.price) * item.amount,
     0 // initial value
   );
 
   const onCheckout = async () => {
+    const data = items.map((item) => ({
+      id: item.product.id,
+      amount: item.amount,
+    }));
+
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
-      { productIds: items.map((item) => item.id) }
+      { productIds: data }
     );
     window.location = res.data.url;
   };
