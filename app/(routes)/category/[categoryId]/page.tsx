@@ -8,10 +8,16 @@ import MobileFilter from "./components/mobile-filters";
 import Filter from "./components/filter";
 import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
+import PriceFilter from "./components/priceFilter";
 
 interface PageProps {
   params: { categoryId: string };
-  searchParams: { colorId: string; sizeId: string };
+  searchParams: {
+    colorId: string;
+    sizeId: string;
+    maxPrice: number;
+    minPrice: number;
+  };
 }
 
 const Page: React.FC<PageProps> = async ({ params, searchParams }) => {
@@ -19,6 +25,8 @@ const Page: React.FC<PageProps> = async ({ params, searchParams }) => {
     categoryId: params.categoryId,
     colorId: searchParams.colorId,
     sizeId: searchParams.sizeId,
+    maxPrice: searchParams.maxPrice,
+    minPrice: searchParams.minPrice,
   });
 
   const sizes = await getSizes();
@@ -37,6 +45,8 @@ const Page: React.FC<PageProps> = async ({ params, searchParams }) => {
             <div className="hidden lg:block">
               <Filter valueKey="sizeId" name="Sizes" data={sizes} />
               <Filter valueKey="colorId" name="Colors" data={colors} />
+              <PriceFilter valueKey="maxPrice" name="Max Price" />
+              <PriceFilter valueKey="minPrice" name="Min Price" />
             </div>
             <div className="mt-6 lg:col-span-4 lg:mt-0">
               {products.length === 0 ? (

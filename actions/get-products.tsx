@@ -8,6 +8,8 @@ interface Query {
   colorId?: string;
   sizeId?: string;
   isFeatured?: boolean;
+  maxPrice?: number;
+  minPrice?: number;
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
@@ -18,6 +20,8 @@ const getProducts = async (query: Query): Promise<Product[]> => {
       colorId: query.colorId,
       sizeId: query.sizeId,
       isFeatured: query.isFeatured,
+      maxPrice: query.maxPrice,
+      minPrice: query.minPrice,
     },
   });
 

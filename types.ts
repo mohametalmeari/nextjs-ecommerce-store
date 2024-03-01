@@ -36,4 +36,5 @@ export interface Product {
   images: Image[];
   size: Size;
   color: Color;
+  inventory: number;
 }
